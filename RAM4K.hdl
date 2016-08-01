@@ -11,9 +11,109 @@
  */
 
 CHIP RAM4K {
-    IN in[16], load, address[12];
+    IN in[16], load, address[12]; 
     OUT out[16];
 
     PARTS:
     // Put your code here:
+    DMux8Way(in = load, sel = address[9..11], a = loadA, b = loadB, c = loadC, d = loadD, e = loadE, f = loadF, g = loadG, h = loadH);
+
+    // a
+    DMux8Way(in = loadA, sel = address[6..8], a = ramAA, b = ramBA, c = ramCA, d = ramDA, e = ramEA, f = ramFA, g = ramGA, h = ramHA);
+    RAM64(in = in, load = ramHA, address = address[0..5], out = outRamHA);
+    RAM64(in = in, load = ramGA, address = address[0..5], out = outRamGA);
+    RAM64(in = in, load = ramFA, address = address[0..5], out = outRamFA);
+    RAM64(in = in, load = ramEA, address = address[0..5], out = outRamEA);
+    RAM64(in = in, load = ramDA, address = address[0..5], out = outRamDA);
+    RAM64(in = in, load = ramCA, address = address[0..5], out = outRamCA);
+    RAM64(in = in, load = ramBA, address = address[0..5], out = outRamBA);
+    RAM64(in = in, load = ramAA, address = address[0..5], out = outRamAA);
+    Mux8Way16(a = outRamAA,b = outRamBA,c = outRamCA,d = outRamDA,e = outRamEA,f = outRamFA,g = outRamGA,h = outRamHA, sel = address[6..8], out = outRamGroupA);
+
+    // b
+    DMux8Way(in = loadB, sel = address[6..8], a = ramAB, b = ramBB, c = ramCB, d = ramDB, e = ramEB, f = ramFB, g = ramGB, h = ramHB);
+    RAM64(in = in, load = ramHB, address = address[0..5], out = outRamHB);
+    RAM64(in = in, load = ramGB, address = address[0..5], out = outRamGB);
+    RAM64(in = in, load = ramFB, address = address[0..5], out = outRamFB);
+    RAM64(in = in, load = ramEB, address = address[0..5], out = outRamEB);
+    RAM64(in = in, load = ramDB, address = address[0..5], out = outRamDB);
+    RAM64(in = in, load = ramCB, address = address[0..5], out = outRamCB);
+    RAM64(in = in, load = ramBB, address = address[0..5], out = outRamBB);
+    RAM64(in = in, load = ramAB, address = address[0..5], out = outRamAB);
+    Mux8Way16(a = outRamAB,b = outRamBB,c = outRamCB,d = outRamDB,e = outRamEB,f = outRamFB,g = outRamGB,h = outRamHB, sel = address[6..8], out = outRamGroupB);    
+
+    // c
+    DMux8Way(in = loadC, sel = address[6..8], a = ramAC, b = ramBC, c = ramCC, d = ramDC, e = ramEC, f = ramFC, g = ramGC, h = ramHC);
+    RAM64(in = in, load = ramHC, address = address[0..5], out = outRamHC);
+    RAM64(in = in, load = ramGC, address = address[0..5], out = outRamGC);
+    RAM64(in = in, load = ramFC, address = address[0..5], out = outRamFC);
+    RAM64(in = in, load = ramEC, address = address[0..5], out = outRamEC);
+    RAM64(in = in, load = ramDC, address = address[0..5], out = outRamDC);
+    RAM64(in = in, load = ramCC, address = address[0..5], out = outRamCC);
+    RAM64(in = in, load = ramBC, address = address[0..5], out = outRamBC);
+    RAM64(in = in, load = ramAC, address = address[0..5], out = outRamAC);
+    Mux8Way16(a = outRamAC,b = outRamBC,c = outRamCC,d = outRamDC,e = outRamEC,f = outRamFC,g = outRamGC,h = outRamHC, sel = address[6..8], out = outRamGroupC);    
+
+    // d
+    DMux8Way(in = loadD, sel = address[6..8], a = ramAD, b = ramBD, c = ramCD, d = ramDD, e = ramED, f = ramFD, g = ramGD, h = ramHD);
+    RAM64(in = in, load = ramHD, address = address[0..5], out = outRamHD);
+    RAM64(in = in, load = ramGD, address = address[0..5], out = outRamGD);
+    RAM64(in = in, load = ramFD, address = address[0..5], out = outRamFD);
+    RAM64(in = in, load = ramED, address = address[0..5], out = outRamED);
+    RAM64(in = in, load = ramDD, address = address[0..5], out = outRamDD);
+    RAM64(in = in, load = ramCD, address = address[0..5], out = outRamCD);
+    RAM64(in = in, load = ramBD, address = address[0..5], out = outRamBD);
+    RAM64(in = in, load = ramAD, address = address[0..5], out = outRamAD);
+    Mux8Way16(a = outRamAD,b = outRamBD,c = outRamCD,d = outRamDD,e = outRamED,f = outRamFD,g = outRamGD,h = outRamHD, sel = address[6..8], out = outRamGroupD);        
+
+    // e
+    DMux8Way(in = loadE, sel = address[6..8], a = ramAE, b = ramBE, c = ramCE, d = ramDE, e = ramEE, f = ramFE, g = ramGE, h = ramHE);
+    RAM64(in = in, load = ramHE, address = address[0..5], out = outRamHE);
+    RAM64(in = in, load = ramGE, address = address[0..5], out = outRamGE);
+    RAM64(in = in, load = ramFE, address = address[0..5], out = outRamFE);
+    RAM64(in = in, load = ramEE, address = address[0..5], out = outRamEE);
+    RAM64(in = in, load = ramDE, address = address[0..5], out = outRamDE);
+    RAM64(in = in, load = ramCE, address = address[0..5], out = outRamCE);
+    RAM64(in = in, load = ramBE, address = address[0..5], out = outRamBE);
+    RAM64(in = in, load = ramAE, address = address[0..5], out = outRamAE);
+    Mux8Way16(a = outRamAE,b = outRamBE,c = outRamCE,d = outRamDE,e = outRamEE,f = outRamFE,g = outRamGE,h = outRamHE, sel = address[6..8], out = outRamGroupE);            
+
+    // f
+    DMux8Way(in = loadF, sel = address[6..8], a = ramAF, b = ramBF, c = ramCF, d = ramDF, e = ramEF, f = ramFF, g = ramGF, h = ramHF);
+    RAM64(in = in, load = ramHF, address = address[0..5], out = outRamHF);
+    RAM64(in = in, load = ramGF, address = address[0..5], out = outRamGF);
+    RAM64(in = in, load = ramFF, address = address[0..5], out = outRamFF);
+    RAM64(in = in, load = ramEF, address = address[0..5], out = outRamEF);
+    RAM64(in = in, load = ramDF, address = address[0..5], out = outRamDF);
+    RAM64(in = in, load = ramCF, address = address[0..5], out = outRamCF);
+    RAM64(in = in, load = ramBF, address = address[0..5], out = outRamBF);
+    RAM64(in = in, load = ramAF, address = address[0..5], out = outRamAF);
+    Mux8Way16(a = outRamAF,b = outRamBF,c = outRamCF,d = outRamDF,e = outRamEF,f = outRamFF,g = outRamGF,h = outRamHF, sel = address[6..8], out = outRamGroupF);            
+
+    // g
+    DMux8Way(in = loadG, sel = address[6..8], a = ramAG, b = ramBG, c = ramCG, d = ramDG, e = ramEG, f = ramFG, g = ramGG, h = ramHG);
+    RAM64(in = in, load = ramHG, address = address[0..5], out = outRamHG);
+    RAM64(in = in, load = ramGG, address = address[0..5], out = outRamGG);
+    RAM64(in = in, load = ramFG, address = address[0..5], out = outRamFG);
+    RAM64(in = in, load = ramEG, address = address[0..5], out = outRamEG);
+    RAM64(in = in, load = ramDG, address = address[0..5], out = outRamDG);
+    RAM64(in = in, load = ramCG, address = address[0..5], out = outRamCG);
+    RAM64(in = in, load = ramBG, address = address[0..5], out = outRamBG);
+    RAM64(in = in, load = ramAG, address = address[0..5], out = outRamAG);
+    Mux8Way16(a = outRamAG,b = outRamBG,c = outRamCG,d = outRamDG,e = outRamEG,f = outRamFG,g = outRamGG,h = outRamHG, sel = address[6..8], out = outRamGroupG);                
+
+    // h
+    DMux8Way(in = loadH, sel = address[6..8], a = ramAH, b = ramBH, c = ramCH, d = ramDH, e = ramEH, f = ramFH, g = ramGH, h = ramHH);
+    RAM64(in = in, load = ramHH, address = address[0..5], out = outRamHH);
+    RAM64(in = in, load = ramGH, address = address[0..5], out = outRamGH);
+    RAM64(in = in, load = ramFH, address = address[0..5], out = outRamFH);
+    RAM64(in = in, load = ramEH, address = address[0..5], out = outRamEH);
+    RAM64(in = in, load = ramDH, address = address[0..5], out = outRamDH);
+    RAM64(in = in, load = ramCH, address = address[0..5], out = outRamCH);
+    RAM64(in = in, load = ramBH, address = address[0..5], out = outRamBH);
+    RAM64(in = in, load = ramAH, address = address[0..5], out = outRamAH);
+    Mux8Way16(a = outRamAH,b = outRamBH,c = outRamCH,d = outRamDH,e = outRamEH,f = outRamFH,g = outRamGH,h = outRamHH, sel = address[6..8], out = outRamGroupH);
+
+    Mux8Way16(a = outRamGroupA,b = outRamGroupB,c = outRamGroupC,d = outRamGroupD,e = outRamGroupE,f = outRamGroupF,g = outRamGroupG,h = outRamGroupH,sel = address[9..11], out = out);
+
 }
